@@ -1,19 +1,30 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CollegeCard from "@/components/CollegeCard";
 
 export default function Home() {
   const [search, setSearch] = useState("");
   const [colleges, setColleges] = useState<any[]>([]);
 
-  async function handleSearch() {
+  async function fetchColleges(query = "") {
     const res = await fetch(
-      `/api/colleges?search=${encodeURIComponent(search)}`
+      `/api/colleges?search=${encodeURIComponent(query)}`
     );
 
     const data = await res.json();
-    setColleges(data);
+
+    if (Array.isArray(data)) {
+      setColleges(data);
+    }
+  }
+
+  useEffect(() => {
+    fetchColleges();
+  }, []);
+
+  async function handleSearch() {
+    fetchColleges(search);
   }
 
   return (
@@ -57,7 +68,7 @@ export default function Home() {
           </h2>
 
           <div className="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {(colleges.length > 0 ? colleges : []).map((college) => (
+            {colleges.map((college) => (
               <CollegeCard
                 key={college.id}
                 college={college}

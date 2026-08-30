@@ -1,5 +1,5 @@
 import { PrismaNeon } from "@prisma/adapter-neon";
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient } from "@/app/generated/prisma";
 import bcrypt from "bcryptjs";
 import { NextResponse } from "next/server";
 import { createToken } from "@/lib/auth";

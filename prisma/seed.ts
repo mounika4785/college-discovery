@@ -7,7 +7,11 @@ const adapter = new PrismaNeon({
 });
 
 const prisma = new PrismaClient({ adapter });
+
 async function main() {
+  // Remove existing colleges before inserting fresh seed data
+  await prisma.college.deleteMany();
+
   await prisma.college.createMany({
     data: [
       {
@@ -25,7 +29,6 @@ async function main() {
           "Mechanical Engineering",
         ],
       },
-
       {
         name: "NIT Warangal",
         location: "Warangal",
@@ -41,7 +44,6 @@ async function main() {
           "Civil Engineering",
         ],
       },
-
       {
         name: "IIIT Hyderabad",
         location: "Hyderabad",
@@ -57,7 +59,6 @@ async function main() {
           "Artificial Intelligence",
         ],
       },
-
       {
         name: "BITS Hyderabad",
         location: "Hyderabad",
@@ -73,7 +74,6 @@ async function main() {
           "Mechanical Engineering",
         ],
       },
-
       {
         name: "VNR VJIET",
         location: "Hyderabad",
@@ -89,7 +89,6 @@ async function main() {
           "Electronics",
         ],
       },
-
       {
         name: "CBIT",
         location: "Hyderabad",

@@ -1,3 +1,5 @@
+"use client";
+
 interface College {
   id: number;
   name: string;
@@ -13,7 +15,7 @@ interface CollegeCardProps {
 export default function CollegeCard({ college }: CollegeCardProps) {
   return (
     <div className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm transition hover:shadow-md">
-      
+
       <h3 className="text-xl font-bold text-slate-900">
         {college.name}
       </h3>
@@ -40,9 +42,12 @@ export default function CollegeCard({ college }: CollegeCardProps) {
           View Details
         </a>
 
-        <button className="flex-1 rounded-lg border border-slate-300 px-4 py-2 text-sm font-medium hover:bg-slate-50">
+        <a
+          href="/compare"
+          className="flex-1 rounded-lg border border-slate-300 px-4 py-2 text-center text-sm font-medium hover:bg-slate-50"
+        >
           Compare
-        </button>
+        </a>
       </div>
     </div>
   );
